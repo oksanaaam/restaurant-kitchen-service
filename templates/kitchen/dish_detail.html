@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dish type : {{ dish.dish_type.name }}</h1>
+  <p><strong>Name: </strong> {{ dish.name  }}</p>
+  <p><strong>Price: </strong> {{ dish.price }}</p>
+  <div class="ml-3">
+    <h3>Cooks</h3>
+
+  {% for cook in dish.cooks.all %}
+    <hr>
+    <p class="text-muted"><strong>Id: </strong> {{ cook.id }}</p>
+    <p><strong>Fullname: </strong> <a href={% url 'kitchen:cook-detail' pk=cook.id %}>{{ cook.username }}</a></p>
+    <p><strong>Email: </strong>{% if cook.email %}{{ cook.email }}{% endif %}</p>
+    <p><strong>Years of experience: </strong>{{ cook.years_of_experience }}</p>
+  {% empty %}
+    <p>There is no cook!</p>
+  {% endfor %}
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Cook List</h1>
+
+  {% if cook_list %}
+    <table>
+      <tr>
+        <th>Users </th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Years_of_experience</th>
+      </tr>
+      {% for cook in cook_list %}
+        <tr>
+          <td><a href={% url 'kitchen:cook-detail' pk=cook.id %}>{{ cook.username }}</a></td>
+          <td>{{ cook.first_name }}</td>
+          <td>{{ cook.last_name }}</td>
+          <td>{{ cook.email }}</td>
+          <td>{{ cook.years_of_experience }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no cooks in restaurant</p>
+  {% endif %}
+{% endblock %}
