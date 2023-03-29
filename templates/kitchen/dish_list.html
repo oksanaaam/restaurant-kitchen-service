@@ -4,22 +4,39 @@
   <h1>Dish List</h1>
 
   {% if dish_list %}
-    <table>
+    <table class="table">
       <tr>
         <th>Type</th>
         <th>Name</th>
         <th>Price</th>
-        <th>Description</th>
+        <th>Update</th>
+        <th>Delete</th>
       </tr>
+
       {% for dish in dish_list %}
         <tr>
           <td><a href={% url 'kitchen:dish-detail' pk=dish.id %}>{{ dish.dish_type }}</a></td>
           <td>{{ dish.name }}</td>
-          <td>{{ dish.description }}</td>
           <td>{{ dish.price }}</td>
-        </tr>
+          <td>
+              <a href="{% url "kitchen:dish-update" dish.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a href="{% url "kitchen:dish-delete" dish.id %}">
+                Delete
+              </a>
+            </td>
+          </tr>
       {% endfor %}
+
+    <a style="float: right"
+       href="{% url 'kitchen:dish-create' %}"
+       class="btn btn-primary">Create a new dish
+    </a>
     </table>
+
   {% else %}
     <p>There are no cars in kitchen</p>
   {% endif %}
