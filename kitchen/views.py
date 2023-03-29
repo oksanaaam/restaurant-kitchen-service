@@ -2,12 +2,12 @@ from urllib.request import Request
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpRequest
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.forms import CookCreationForm, CookExperienceUpdateForm
+from kitchen.forms import CookCreationForm, CookExperienceUpdateForm, DishForm
 from kitchen.models import Dish, DishType, Cook
 
 
@@ -66,13 +66,13 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
-    fields = "__all__"
+    form_class = DishForm
     success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
-    fields = "__all__"
+    form_class = DishForm
     success_url = reverse_lazy("kitchen:dish-list")
 
 
@@ -105,3 +105,18 @@ class CookExperienceUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
     form_class = CookExperienceUpdateForm
     success_url = reverse_lazy("kitchen:cook-list")
+
+
+class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Cook
+    success_url = reverse_lazy("kitchen:cook-list")
+
+
+@login_required
+def dish_update_cook(request: HttpRequest, pk: int) -> HttpResponse:
+    dish = Dish.objects.get(id=pk)
+    if request.user in dish.cooks.all():
+        dish.cooks.remove(request.user)
+    else:
+        dish.cooks.add(request.user)
+    return redirect("kitchen:dish-detail", pk=pk)

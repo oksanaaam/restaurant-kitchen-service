@@ -9,6 +9,10 @@
     {{ form|crispy }}
 
     <input class="btn btn-primary" type="submit" value="Add">
+    <a href="{% url 'kitchen:dish-type-list'%}"
+       class="btn btn-primary">
+      Cancel
+    </a>
 
   </form>
 {% endblock %}

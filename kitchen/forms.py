@@ -38,3 +38,15 @@ class CookCreationForm(UserCreationForm):
         years_of_experience = self.cleaned_data["years_of_experience"]
         license_experience_validator(years_of_experience)
         return years_of_experience
+
+
+class DishForm(forms.ModelForm):
+    cooks = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=True
+    )
+
+    class Meta:
+        model = Dish
+        fields = "__all__"
