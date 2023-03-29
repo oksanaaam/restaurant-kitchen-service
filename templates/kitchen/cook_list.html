@@ -4,7 +4,7 @@
   <h1>Cook List</h1>
 
   {% if cook_list %}
-    <table>
+    <table class="table">
       <tr>
         <th>Users </th>
         <th>First Name</th>
@@ -21,8 +21,15 @@
           <td>{{ cook.years_of_experience }}</td>
         </tr>
       {% endfor %}
+    <a style="float: right"
+       href="{% url 'kitchen:cook-create' %}"
+       class="btn btn-primary">
+      Create a new cook
+    </a>
     </table>
+
   {% else %}
     <p>There are no cooks in restaurant</p>
   {% endif %}
+
 {% endblock %}
