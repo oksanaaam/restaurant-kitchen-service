@@ -22,15 +22,44 @@
   <div class="ml-3">
     <h3>Dishes:</h3>
 
-  {% for dish in cook.dishes.all %}
-    <p><strong>Type: </strong>{{ dish.dish_type.name }}</p>
-    <p><strong>Name: </strong><a
-        href="{% url "kitchen:dish-detail" pk=dish.id %}">{{ dish.name }}
-    </a></p>
-    <p><strong>Price: </strong>{{ dish.price }}</p>
-  {% empty %}
-    <p>There are no dishes in {{ cook.username }}!</p>
-  {% endfor %}
+    {% if cook.dishes.all %}
+    <table class="table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+
+      {% for dish in cook.dishes.all %}
+        <tr>
+          <td>{{ dish.dish_type.name }}</td>
+          <td><a href={% url 'kitchen:dish-detail' pk=dish.id %}>{{ dish.name }}</a></td>
+          <td>{{ dish.price }}</td>
+        </tr>
+      {% endfor %}
+
+      <a style="float: right"
+         href="{% url 'kitchen:dish-create' %}"
+         class="btn btn-primary">Create a new dish
+      </a>
+    </table>
+  {% else %}
+    <p>There are dishes by {{ cook.username }}!</p>
+    <a style="float: right"
+       href="{% url 'kitchen:dish-create' %}"
+       class="btn btn-primary">Click here to create new dish
+    </a>
+  {% endif %}
+{##}
+{#  {% for dish in cook.dishes.all %}#}
+{#    <p><strong>Type: </strong>{{ dish.dish_type.name }}</p>#}
+{#    <p><strong>Name: </strong><a#}
+{#        href="{% url "kitchen:dish-detail" pk=dish.id %}">{{ dish.name }}#}
+{#    </a></p>#}
+{#    <p><strong>Price: </strong>{{ dish.price }}</p>#}
+{#  {% empty %}#}
+{#    <p>There are no dishes in {{ cook.username }}!</p>#}
+{#  {% endfor %}#}
 
 
   </div>

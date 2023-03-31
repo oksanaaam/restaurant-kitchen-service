@@ -1,14 +1,80 @@
-<ul class="sidebar-nav">
-  {% if user.is_authenticated %}
-    <li class="list-group-item">User: <a href="{% url 'kitchen:cook-detail' user.pk %}">{{ user.username }}</a></li>
-    <li class="list-group-item"><a href="{% url "logout" %}">Logout</a></li>
-  {% else %}
-    <li class="list-group-item"><a href="{% url "login" %}">Login</a></li>
-  {% endif %}
-  <br>
+{#<ul class="sidebar-nav">#}
+{#  {% if user.is_authenticated %}#}
+{#    <li class="list-group-item">User: <a href="{% url 'kitchen:cook-detail' user.pk %}">{{ user.username }}</a></li>#}
+{#    <li class="list-group-item"><a href="{% url "logout" %}">Logout</a></li>#}
+{#  {% else %}#}
+{#    <li class="list-group-item"><a href="{% url "login" %}">Login</a></li>#}
+{#  {% endif %}#}
+{#  <br>#}
+{##}
+{#  <li class="list-group-item"><a href="{% url 'kitchen:index' %}">Home page</a></li>#}
+{#  <li class="list-group-item"><a href="{% url 'kitchen:dish-type-list' %}">All DishTypes</a></li>#}
+{#  <li class="list-group-item"><a href="{% url 'kitchen:dish-list' %}">All Dishes</a></li>#}
+{#  <li class="list-group-item"><a href="{% url 'kitchen:cook-list' %}">All Cooks</a></li>#}
+{#</ul>#}
 
-  <li class="list-group-item"><a href="{% url 'kitchen:index' %}">Home page</a></li>
-  <li class="list-group-item"><a href="{% url 'kitchen:dish-type-list' %}">All DishTypes</a></li>
-  <li class="list-group-item"><a href="{% url 'kitchen:dish-list' %}">All Dishes</a></li>
-  <li class="list-group-item"><a href="{% url 'kitchen:cook-list' %}">All Cooks</a></li>
-</ul>
+{% load static %}
+<!-- Navbar -->
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <nav
+        class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid px-0">
+          <a class="navbar-brand font-weight-bolder ms-sm-4"
+            href="/" rel="tooltip"
+            title="Click to go home page" data-placement="bottom">
+            Home page
+          </a>
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon mt-2"></span>
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </button>
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+            <a class="navbar-brand ms-sm-7"
+{#    <li
+{#              href="{% url 'kitchen:cook-detail' cook.id %}" rel="tooltip"#}
+              title="Click to go your account" data-placement="bottom">
+              My account
+            </a>
+            <a class="navbar-brand ms-sm-7"
+              href="{% url 'kitchen:dish-type-list' %}" rel="tooltip"
+              title="Click to see all dish types" data-placement="bottom">
+              DishTypes
+            </a>
+            <a class="navbar-brand ms-sm-7"
+              href="{% url 'kitchen:dish-list' %}" rel="tooltip"
+              title="Click to see all our dishes" data-placement="bottom">
+              Dishes
+            </a>
+            <a class="navbar-brand ms-sm-7"
+              href="{% url 'kitchen:cook-list' %}" rel="tooltip"
+              title="Click to see all our cooks" data-placement="bottom">
+              Our Cooks
+            </a>
+
+            {% if request.user.is_authenticated %}
+              <a class="nav-item ms-lg-auto font-weight-bold fa fa-sign-out me-5"
+              href="{% url 'logout' %}" rel="tooltip" data-placement="bottom">
+              Logout
+              </a>
+            {% else %}
+              <a class="nav-item ms-lg-auto font-weight-bold fa fa-sign-out me-5"
+              href="{% url 'login' %}" rel="tooltip" data-placement="bottom">
+              Login
+              </a>
+            {% endif %}
+
+              <a href="https://github.com/oksanaaam/restaurant-kitchen-service/" target="_blank"
+                class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Git hub</a>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+    </div>
+  </div>
+</div>

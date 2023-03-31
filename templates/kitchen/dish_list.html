@@ -2,7 +2,8 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Dish List</h1>
+  <h2>Dish List</h2>
+
 
   <form action="" method="get" class="form-inline">
   {{ search_form|crispy }}
@@ -10,12 +11,12 @@
   </form>
 
   {% if dish_list %}
-    <table class="table">
+    <table class="table" style="width: 100%; max-width: none;">
       <tr>
         <th>Type</th>
         <th>Name</th>
-        <th>Price</th>
         <th>Description</th>
+        <th>Price</th>
       </tr>
 
       {% for dish in dish_list %}
@@ -24,13 +25,13 @@
           <td>{{ dish.name }}</td>
           <td>{{ dish.description }}</td>
           <td>{{ dish.price }}</td>
-
+        </tr>
       {% endfor %}
 
-    <a style="float: right"
-       href="{% url 'kitchen:dish-create' %}"
-       class="btn btn-primary">Create a new dish
-    </a>
+      <a style="float: right"
+         href="{% url 'kitchen:dish-create' %}"
+         class="btn btn-primary">Create a new dish
+      </a>
     </table>
 
   {% else %}
