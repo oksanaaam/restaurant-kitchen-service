@@ -1,36 +1,3 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#  {% block title %}<title>Taxi Service</title>{% endblock %}#}
-{#  <meta charset="utf-8">#}
-{#  <meta name="viewport" content="width=device-width, initial-scale=1">#}
-{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"#}
-{#        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"#}
-{#        crossorigin="anonymous">#}
-{#  {% load static %}#}
-{#  <link rel="stylesheet" href="{% static 'css/style.css' %}">#}
-{#</head>#}
-{#<body>#}
-{#<div class="container-fluid">#}
-{#  <div class="row">#}
-{#    <div class="col-sm-2">#}
-{#      {% block sidebar %}#}
-{#        {% include "includes/sidebar.html" %}#}
-{#      {% endblock %}#}
-{#    </div>#}
-{#    <div class="col-sm-10 ">#}
-{#      {% block content %}{% endblock %}#}
-{##}
-{#      {% block pagination %}#}
-{#        {% include "includes/pagination.html" %}#}
-{#      {% endblock %}#}
-{##}
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
-{#</body>#}
-{#</html>#}
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
@@ -40,8 +7,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
-<link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/img.png' %}">
+<link rel="icon" type="image/png" href="{% static 'img/img.png' %}">
 
 <title>
   Kitchen
@@ -60,11 +27,15 @@
 <!-- CSS Files -->
 <link id="pagestyle" href="{% static 'css/soft-design-system.css' %}" rel="stylesheet" />
 </head>
-
+<style>
+  body {
+    padding-top:5px;
+  }
+</style>
 <body {% block body %}{% endblock body %} >
 
   {% block header %}
-  <div style="margin-bottom: 150px;">
+  <div style=margin-bottom:100px;">
 
     {% include 'includes/sidebar.html' %}
   </div>
@@ -74,15 +45,16 @@
   <div class="mx-lg-5 mx-md-3 mx-sm-1 px-lg-5 px-md-3 px-sm-0">
 
     {% block content %}{% endblock content %}
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock %}
   </div>
 
   {% block footer %}
 
-    {% include 'includes/footer_background.html' %}
+    {% include 'includes/footer.html' %}
 
   {% endblock footer %}
-
-  {% include 'includes/scripts.html' %}
 
   {% block javascripts %}{% endblock javascripts %}
 

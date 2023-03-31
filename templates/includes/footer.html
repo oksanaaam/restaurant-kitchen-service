@@ -1,51 +1,127 @@
-<!-- -------- START FOOTER 5 w/ DARK BACKGROUND ------- -->
-<footer class="footer py-5">
-  <div class="container z-index-1 position-relative">
-    <div class="row">
-      <div class="col-lg-4 me-auto mb-lg-0 mb-4 text-lg-start text-center">
-        <h6 class="text-dark font-weight-bolder text-uppercase mb-lg-4 mb-3">Material Design</h6>
-        <ul class="nav flex-row ms-n3 justify-content-lg-start justify-content-center mb-4 mt-sm-0">
-          <li class="nav-item">
-            <a class="nav-link text-dark opacity-8" href="https://www.creative-tim.com?AFFILIATE=128200" target="_blank">
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark opacity-8" href="https://www.creative-tim.com/presentation?AFFILIATE=128200" target="_blank">
-              About
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark opacity-8" href="https://www.creative-tim.com/blog?AFFILIATE=128200" target="_blank">
-              Blog
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark opacity-8" href="https://www.creative-tim.com?AFFILIATE=128200" target="_blank">
-              Services
-            </a>
-          </li>
-        </ul>
-        <p class="text-sm text-dark opacity-8 mb-0">
-          &copy; <a href="https://www.creative-tim.com?AFFILIATE=128200" target="_blank">Creative Tim</a> - Coded by AppSeed.
-        </p>
+{% load static %}
+
+<footer class="footer pt-5 mt-5">
+  <hr class="horizontal dark mb-5">
+  <div class="container">
+    <div class=" row">
+      <div class="col-md-3 mb-4 ms-auto">
+        <div>
+          <h6 class="text-gradient text-primary font-weight-bolder">Restaurant tasty food</h6>
+        </div>
       </div>
-      <div class="col-lg-6 ms-auto text-lg-end text-center">
-        <p class="mb-5 text-lg text-dark font-weight-bold">
-          The reward for getting on the stage is fame. The price of fame is you can’t get off the stage.
-        </p>
-        <a href="javascript:;" target="_blank" class="text-dark me-xl-4 me-4 opacity-5">
-          <span class="fab fa-dribbble"></span>
-        </a>
-        <a href="javascript:;" target="_blank" class="text-dark me-xl-4 me-4 opacity-5">
-          <span class="fab fa-twitter"></span>
-        </a>
-        <a href="javascript:;" target="_blank" class="text-dark me-xl-4 me-4 opacity-5">
-          <span class="fab fa-pinterest"></span>
-        </a>
-        <a href="javascript:;" target="_blank" class="text-dark opacity-5">
-          <span class="fab fa-github"></span>
-        </a>
+
+
+      <div class="col-md-2 col-sm-6 col-6 mb-4">
+        <div>
+          <h6 class="text-gradient text-primary text-sm">Company</h6>
+          <ul class="flex-column ms-n3 nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                About Us
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Freebies
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Premium Tools
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-6 col-6 mb-4">
+        <div>
+          <h6 class="text-gradient text-primary text-sm">Resources</h6>
+          <ul class="flex-column ms-n3 nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Illustrations
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Bits & Snippets
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Affiliate Program
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-6 col-6 mb-4">
+        <div>
+          <h6 class="text-gradient text-primary text-sm">Help & Support</h6>
+          <ul class="flex-column ms-n3 nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Contact Us
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Knowledge Center
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Custom Development
+              </a>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-6 col-6 mb-4 me-auto">
+        <div>
+          <h6 class="text-gradient text-primary text-sm">Legal</h6>
+          <ul class="flex-column ms-n3 nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Terms &amp; Conditions
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Privacy Policy
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'kitchen:index' %}" target="_blank">
+                Licenses (EULA)
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="text-center">
+          <p class="my-4 text-sm">
+            <div>
+              <h5 class="mt-3 mb-2 opacity-6">&copy; Cook Tim - cooked with love❤️.</h5>
+            </div>
+          </p>
+        </div>
       </div>
     </div>
   </div>
