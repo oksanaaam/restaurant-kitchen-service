@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -80,20 +81,11 @@ WSGI_APPLICATION = "restaurant.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-#
-# db_from_env = dj_database_url.config(conn_max_age=500, password="fy5JYDhvTy01QJPCeokpIlnUSU9B_y7b")
-# DATABASES["default"].update(db_from_env)
-
 
 DATABASES = {
     "default": dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
+
 
 # встановлюємо змінну середовища DATABASE_URL
 os.environ["DATABASE_URL"] = "postgres://thyasjbi:fy5JYDhvTy01QJPCeokpIlnUSU9B_y7b@snuffleupagus.db.elephantsql.com/thyasjbi"
@@ -141,6 +133,9 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+
+STATIC_ROOT = "staticfiles/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
