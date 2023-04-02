@@ -2,7 +2,14 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h2>Dish Type List</h2>
+  <h2>
+    Dish Type List
+    <a style="float: right"
+       href="{% url 'kitchen:dish-type-create' %}"
+       class="btn btn-primary">
+      Create a new dish type
+    </a>
+  </h2>
 
   <form action="" method="get" class="form-inline">
   {{ search_form|crispy }}
@@ -36,11 +43,6 @@
             </td>
         </tr>
       {% endfor %}
-    <a style="float: right"
-       href="{% url 'kitchen:dish-type-create' %}"
-       class="btn btn-primary">
-      Create a new dish type
-    </a>
     </table>
 
   {% else %}

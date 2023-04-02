@@ -2,7 +2,14 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h2>Cook List</h2>
+  <h2>
+    Cook List
+    <a style="float: right"
+       href="{% url 'kitchen:cook-create' %}"
+       class="btn btn-primary">
+      Create a new cook
+    </a>
+  </h2>
 
   <form action="" method="get" class="form-inline">
     {{ search_form|crispy }}
@@ -27,11 +34,6 @@
           <td>{{ cook.years_of_experience }}</td>
         </tr>
       {% endfor %}
-    <a style="float: right"
-       href="{% url 'kitchen:cook-create' %}"
-       class="btn btn-primary">
-      Create a new cook
-    </a>
     </table>
 
   {% else %}

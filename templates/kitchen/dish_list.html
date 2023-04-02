@@ -2,7 +2,13 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h2>Dish List</h2>
+  <h2>
+    Dish List
+    <a style="float: right"
+       href="{% url 'kitchen:dish-create' %}"
+       class="btn btn-primary">Create a new dish
+    </a>
+  </h2>
 
 
   <form action="" method="get" class="form-inline">
@@ -28,13 +34,9 @@
         </tr>
       {% endfor %}
 
-      <a style="float: right"
-         href="{% url 'kitchen:dish-create' %}"
-         class="btn btn-primary">Create a new dish
-      </a>
     </table>
 
   {% else %}
-    <p>There are no cars in kitchen</p>
+    <p>There are no dishes in kitchen</p>
   {% endif %}
 {% endblock %}
