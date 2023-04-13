@@ -15,7 +15,7 @@ from kitchen.views import (
     CookDetailView,
     CookCreateView,
     CookExperienceUpdateView,
-    CookDeleteView,
+    CookDeleteView, footer_deploying,
 )
 
 
@@ -68,6 +68,7 @@ urlpatterns = [
         CookDeleteView.as_view(),
         name="cook-delete"
     ),
+    path("deploying/", footer_deploying, name="deploying"),
 ]
 
 app_name = "kitchen"

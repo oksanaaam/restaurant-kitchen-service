@@ -182,3 +182,7 @@ def dish_update_cook(request: HttpRequest, pk: int) -> HttpResponse:
     else:
         dish.cooks.add(request.user)
     return redirect("kitchen:dish-detail", pk=pk)
+
+
+def footer_deploying(request):
+    return render(request, 'footer_deploying.html')
