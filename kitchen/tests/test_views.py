@@ -5,6 +5,7 @@ from django.urls import reverse
 from kitchen.models import DishType, Dish, Cook
 
 COOK_URL = reverse("kitchen:cook-list")
+COOK_CREATE_URL = reverse("kitchen:cook-create")
 DISH_TYPE_URL = reverse("kitchen:dish-type-list")
 DISH_URL = reverse("kitchen:dish-list")
 DISH_CREATE_URL = reverse("kitchen:dish-create")
@@ -46,6 +47,35 @@ class PrivateCookTest(TestCase):
         )
         self.assertTemplateUsed(response, "kitchen/cook_list.html")
 
+    def test_update_cook(self):
+        cook = Cook.objects.create(
+            username="John",
+            password="12345",
+            years_of_experience=1
+        )
+        new_data = {
+            "username": "Johnny",
+            "password": "newpassword",
+            "years_of_experience": 3
+        }
+        url = reverse("kitchen:cook-update", args=[cook.pk])
+        response = self.client.post(url, new_data)
+        self.assertEqual(response.status_code, 302)
+        updated_cook = Cook.objects.get(pk=cook.pk)
+        self.assertEqual(updated_cook.username, new_data["username"])
+        self.assertEqual(updated_cook.years_of_experience, new_data["years_of_experience"])
+
+    def test_delete_cook(self):
+        cook = Cook.objects.create(
+            username="Lina",
+            password="123456",
+            years_of_experience=3
+        )
+        url = reverse("kitchen:cook-delete", args=[cook.pk])
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Cook.objects.filter(pk=cook.pk).exists())
+
 
 class PublicDishTypeTest(TestCase):
     def test_login_required(self):
@@ -79,10 +109,28 @@ class PrivateDishTypeTest(TestCase):
         )
         self.assertTemplateUsed(response, "kitchen/dish_type_list.html")
 
-    def test_dishes_create(self):
-        response = self.client.get(DISH_CREATE_URL)
+    def test_create_dish_type(self):
+        dish_type_count = DishType.objects.count()
+        data = {"name": "Seafood"}
+        response = self.client.post(reverse("kitchen:dish-type-create"), data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(DishType.objects.count(), dish_type_count + 1)
 
-        self.assertEqual(response.status_code, 200)
+    def test_update_dish_type(self):
+        dish_type = DishType.objects.create(name="Cream")
+        data = {"name": "Ice cream"}
+        url = reverse("kitchen:dish-type-update", args=[dish_type.id])
+        response = self.client.post(url, data)
+        updated_dish_type = DishType.objects.get(id=dish_type.id)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(updated_dish_type.name, "Ice cream")
+
+    def test_delete_dish_type(self):
+        dish_type = DishType.objects.create(name="Ice cream")
+        url = reverse("kitchen:dish-type-delete", args=[dish_type.id])
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(DishType.objects.filter(id=dish_type.id).exists())
 
 
 class PublicDishTest(TestCase):
@@ -123,3 +171,22 @@ class PrivateDishTest(TestCase):
             list(dishes)
         )
         self.assertTemplateUsed(response, "kitchen/dish_list.html")
+
+    def test_dishes_create(self):
+        response = self.client.get(DISH_CREATE_URL)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete_dish(self):
+        dish_type = DishType.objects.create(
+            name="Salad"
+        )
+        dish = Dish.objects.create(
+            name="Caesar Salad",
+            price=120,
+            dish_type=dish_type
+        )
+        url = reverse("kitchen:dish-delete", args=[dish.pk])
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Dish.objects.filter(pk=dish.pk).exists())
